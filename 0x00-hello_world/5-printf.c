@@ -1,7 +1,7 @@
 #include <stdio.h>
 /**
- * main - Entry point of the program
- * Return : returns 0 when executed successfully
+ * main - Entry point
+ * Return :Always 0 (Success)
  * Description: Displays a string using printf
  */
 int main(void)
