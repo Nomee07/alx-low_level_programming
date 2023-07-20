@@ -1,9 +1,10 @@
 #include "main.h"
 #include <stdio.h>
+
 /**
- * prints_times_table - Prints the n times, starting with 0
- * @n: The number specifying the size of the times table
- * Return: Always 0
+ * print_times_table - Prints the n times table, starting with 0.
+ * @n: The number specifying the size of the times table.
+ * Return: Nothing.
  */
 void print_times_table(int n)
 {
@@ -15,12 +16,14 @@ for (x = 0; x <= n; x++)
 for (y = 0; y <= n; y++)
 {
 z = x * y;
-if (z > 99)
-printf("%d, ", z);
+if (y == 0)
+printf("%d", z);
+else if (z > 99)
+printf(", %d", z);
 else if (z > 9)
-printf("%d, ", z);
+printf(",  %d", z);
 else
-printf("%d, ", z);
+printf(",   %d", z);
 }
 printf("\n");
 }
