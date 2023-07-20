@@ -18,9 +18,9 @@ z = x * y;
 if (z > 99)
 printf("%d, ", z);
 else if (z > 9)
-printf(" %d, ", z);
+printf("%d, ", z);
 else
-printf("  %d, ", z);
+printf("%d, ", z);
 }
 printf("\n");
 }
