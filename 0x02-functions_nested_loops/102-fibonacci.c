@@ -6,16 +6,20 @@
  */
 int main(void)
 {
-int n = 50;
-int fib1 = 1, fib2 = 2;
-printf("%d, %d", fib1, fib2);
-for (int i = 2; i < n; i++)
+long int i, j, k, next;
+j = 1;
+k = 2;
+for (i = 1; i <= 50; ++i)
 {
-int next_fib = fib1 + fib2;
-printf(", %d", next_fib);
-fib1 = fib2;
-fib2 = next_fib;
+printf("%ld, ", j);
 }
-printf("\n");
+else
+{
+printf("%ld\n", j);
+}
+next = j + k;
+j = k;
+k = next;
+}
 return (0);
 }
