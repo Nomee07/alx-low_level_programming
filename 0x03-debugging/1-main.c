@@ -3,6 +3,7 @@
 /**
  * main - causes an infinite loop
  * Return: 0
+ *
  */
 
 int main(void)
@@ -13,11 +14,11 @@ int main(void)
 
 	i = 0;
 
-	/*  Comment out the while loop to prevent the infinite loop */
-	/*  while (i < 10) */
-	/*  { */
-	/*  putchar(i); */
-	/*  } */
+	/* Comment out the while loop to prevent the infinite loop */
+	/* while (i < 10) */
+	/* { */
+	/* putchar(i); */
+	/* } */
 
 	printf("Infinite loop avoided! \\o/\n");
 
