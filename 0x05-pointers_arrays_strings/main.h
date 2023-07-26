@@ -16,5 +16,8 @@ void puts_half(char *str);
 void print_array(int *a, int n);
 char *_strcpy(char *dest, char *src);
 int _atoi(char *s);
+#define PASSWORD_LENGTH 26
+
+int random_in_range(int min, int max);
 
 #endif /* MAIN_H */
