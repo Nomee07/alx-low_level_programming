@@ -8,18 +8,16 @@
  */
 void print_array(int *a, int n)
 {
-	int i;
+	int j;
 
-	if (a == NULL || n <= 0)
-	return;
-
-	for (i = 0; i < n; i++)
+	for (j = 0; j < n; j++)
 	{
-	printf("%d", a[i]);
+	printf("%d", a[j]);
 
-	if (i < n - 1)
+	if (j != (n - 1))
+	{
 	printf(", ");
 	}
-
+	}
 	printf("\n");
 }
