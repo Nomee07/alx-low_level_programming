@@ -4,14 +4,21 @@
 /**
  * puts2 - Prints character of a string, starting with the first character
  * @str: The input string
+ * Return: void
  */
 void puts2(char *str)
 {
 	int i;
+	int j = 0;
 
-	for (i = 0; str[i] != '\0'; i += 2)
+	while (str[j] != '\0')
 	{
-	putchar(str[i]);
+	j++;
 	}
-	putchar('\n');
+
+	for (i = 0; i < j; i += 2)
+	{
+	_putchar(str[i]);
+	}
+	_putchar('\n');
 }
