@@ -1,5 +1,5 @@
-#include <stddef.h>
 #include "main.h"
+#include <stdio.h>
 
 /**
  * puts2 - Prints character of a string, starting with the first character
@@ -7,14 +7,11 @@
  */
 void puts2(char *str)
 {
-	int i;
-
-	if (str == NULL)
-	return;
+	int i = 0;
 
 	for (i = 0; str[i] != '\0'; i += 2)
 	{
-	_putchar(str[i]);
+	putchar(str[i]);
 	}
-	_putchar('\n');
+	putchar('\n');
 }
