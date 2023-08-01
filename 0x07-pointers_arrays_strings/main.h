@@ -2,6 +2,11 @@
 #define MAIN_H
 
 #include <stddef.h>
+#include <stdio.h>
+#include <unistd.h>
+
+size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
+
 
 char *_memset(char *s, char b, unsigned int n);
 int _putchar(char c);
