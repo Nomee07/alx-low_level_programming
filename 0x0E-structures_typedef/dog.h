@@ -1,10 +1,11 @@
 #ifndef DOG_H
 #define DOG_H
 
-/** struct_dog - A new type.
+/**
+ * struct_dog - A structure to represent information about a dog.
  * @name: The name of the dog.
  * @age: The age of the dog.
- * @0wner: The owner of the dog.
+ * @owner: The owner of the dog.
  */
 
 struct dog
@@ -15,7 +16,7 @@ struct dog
 };
 
 /**
- * dog_t - typedef for struct dog
+ * dog_t - Typedef for struct dog.
  */
 
 typedef struct dog dog_t;
@@ -25,4 +26,4 @@ void print_dog(struct dog *d);
 dog_t *new_dog(char *name, float age, char *owner);
 void free_dog(dog_t *d);
 
-#endif
+#endif /* DOG_H */
