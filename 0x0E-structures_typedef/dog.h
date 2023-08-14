@@ -1,4 +1,5 @@
-#include <stdio.h>
+#ifndef DOG_H
+#define DOG_H
 
 /** struct_dog - A new type.
  * @name: The name of the dog.
@@ -12,3 +13,5 @@ struct dog
 	float age;
 	char *owner;
 };
+
+#endif
