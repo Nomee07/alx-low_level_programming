@@ -8,6 +8,7 @@
  * @name: A name to initialize.
  * @age: The age to initialize.
  * @owner: The owner to initialize.
+ * Return: Nothing
  */
 
 void init_dog(struct dog *d, char *name, float age, char *owner)
