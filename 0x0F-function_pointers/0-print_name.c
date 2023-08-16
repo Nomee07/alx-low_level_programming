@@ -6,7 +6,7 @@
  * @name: A pointer to the name string.
  * @f: A pointer to a function.
  *
- * Return: Always 0 (Success)
+ * Return: Always 0
  */
 
 void print_name(char *name, void (*f)(char *))
