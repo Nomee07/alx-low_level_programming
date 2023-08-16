@@ -3,9 +3,9 @@
 
 /**
  * int_index - Returns the index of the first element.
- * @array: Array.
- * @size: number of elements in the array.
- * @cmp: number of elements in the array.
+ * @array: Pointer to the array.
+ * @size: Number of elements in the array.
+ * @cmp: Pointer to the function used to compare values.
  * Return: Always 0 (Success)
  */
 
