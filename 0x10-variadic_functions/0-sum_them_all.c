@@ -1,6 +1,4 @@
 #include <stdarg.h>
-#include <stdio.h>
-#include "variadic_functions.h"
 
 /**
  * sum_them_all - Returns the sum of variable number of integers.
