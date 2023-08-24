@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 /**
- * add_new_end - Adds a new node at the end of the list_t list.
+ * add_node_end - Adds a new node at the end of the list_t list.
  * @head: Double pointer to the head og the list.
  * @str: String to be added to the new node.
  *
@@ -38,6 +38,7 @@ list_t *add_node_end(list_t **head, const char *str)
 	else
 	{
 		list_t *current = *head;
+
 		while (current->next != NULL)
 		{
 			current =  current->next;
