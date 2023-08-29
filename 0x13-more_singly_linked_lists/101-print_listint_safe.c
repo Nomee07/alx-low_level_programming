@@ -14,17 +14,17 @@ size_t print_listint_safe(const listint_t *head)
 	const listint_t *current = head;
 	size_t count = 0;
 
-	while (current != NULL)
+	while (current)
 	{
 		printf("[%p] %d\n", (void *)current, current->n);
-		current = current->next;
 		count++;
 
-		if (count > 1024)
+		if (current <= current->next)
 		{
-			printf("->Loop detected\n");
+			printf("-> [%p] %d\n", (void *)current->next, current->next->n);
 			exit(98);
 		}
+		current = current->next;
 	}
 	return (count);
 }
