@@ -11,21 +11,18 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *slow_ptr, *fast_ptr;
+	const listint_t *current = head;
 	size_t count = 0;
 
-
-	slow_ptr = fast_ptr = head;
-	while (slow_ptr && fast_ptr && fast_ptr->next)
+	while (current != NULL)
 	{
-		printf("[%p] %d\n", (void *)slow_ptr, slow_ptr->n);
-		slow_ptr = slow_ptr->next;
-		fast_ptr = fast_ptr->next->next;
+		printf("[%p] %d\n", (void *)current, current->n);
+		current = current->next;
 		count++;
 
-		if (slow_ptr == fast_ptr)
+		if (count > 1024)
 		{
-			printf("-> [%p] %d\n", (void *)slow_ptr, slow_ptr->n);
+			printf("->Loop detected\n");
 			exit(98);
 		}
 	}
