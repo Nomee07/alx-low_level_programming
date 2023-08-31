@@ -11,27 +11,32 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t count = 0;
-	const listint_t *current = head, *loop_node = NULL;
+	size_t count = 0, loop_detected = 0;
+	const listint_t *slow = head, *fast = head;
 
-	while (current != NULL)
+	while (fast != NULL && fast->next != NULL)
 	{
-		printf("[%p] %d\n", (void *)current, current->n);
+		slow = slow->next;
+		fast = fast->next->next;
 
-		if (current->next != NULL && current->next <= current)
+		if (slow == fast)
 		{
-			loop_node = current->next;
+			loop_detected = 1;
 			break;
 		}
-
-		current = current->next;
-		count++;
 	}
-
-	if (loop_node != NULL)
+	if (loop_detected)
 	{
-		printf("-> [%p] %d\n", (void *)loop_node, loop_node->n);
+		printf("Infinite loop detected. Exiting with status 98\n");
 		exit(98);
+	}
+	fast = head;
+
+	while (fast != NULL)
+	{
+		printf("[%p] %d\n", (void *)fast, fast->n);
+		fast = fast->next;
+		count++;
 	}
 
 	return (count);
