@@ -79,6 +79,11 @@ int main(int argc, char *argv[])
 	{
 		error_exit(97, "Usage: cp file_from file_to\n");
 	}
+	if (src_filename[0] == '\0' || dest_filename[0] == '\0')
+	{
+		error_exit(97, "Usage: cp file_from file_to\n");
+	}
+
 	copy_file(src_filename, dest_filename);
 
 	return (0);
