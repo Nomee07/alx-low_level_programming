@@ -24,6 +24,50 @@ void error_exit(int code, const char *format, ...)
 }
 
 /**
+ * copy_file - Copies the content of one file to another file.
+ * @src_filename: Source file name.
+ * @dest_filename: Destination file name.
+ */
+
+void copy_file(const char *src_filename, const char *dest_filename)
+{
+	int fd_from = open(src_filename, O_RDONLY);
+	int fd_to = open(dest_filename, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	char buffer[BUFFER_SIZE];
+	ssize_t bytes_read;
+
+	if (fd_from == -1)
+	{
+		error_exit(98, "Error: Can't read from file %s\n", src_filename);
+	}
+	if (fd_to == -1)
+	{
+		error_exit(99, "Error: Can't write to file %s\n", dest_filename);
+	}
+	while ((bytes_read = read(fd_from, buffer, sizeof(buffer))) > 0)
+	{
+		ssize_t bytes_written = write(fd_to, buffer, bytes_read);
+
+		if (bytes_written == -1)
+		{
+			error_exit(99, "Error: Can't write to file %s\n", dest_filename);
+		}
+	}
+	if (bytes_read == -1)
+	{
+		error_exit(98, "Error: Can't read from file %s\n", src_filename);
+	}
+	if (close(fd_from) == -1)
+	{
+		error_exit(100, "Error: Can't close fd %d\n", fd_from);
+	}
+	if (close(fd_to) == -1)
+	{
+		error_exit(100, "Error: Can't close fd %d\n", fd_to);
+	}
+}
+
+/**
  * main - Entry point for the cp program.
  * @argc: Numer of command-line args.
  * @argv: Array of strings containing the args.
@@ -33,40 +77,14 @@ void error_exit(int code, const char *format, ...)
 
 int main(int argc, char *argv[])
 {
-	int fd_from = open(argv[1], O_RDONLY);
-	char buffer[BUFFER_SIZE];
-	ssize_t bytes_read;
-	int fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	const char *src_filename = argv[1];
+	const char *dest_filename = argv[2];
 
 	if (argc != 3)
 	{
 		error_exit(97, "Usage: cp file_from file_to\n");
 	}
+	copy_file(src_filename, dest_filename);
 
-	if (fd_from == -1)
-	{
-		error_exit(98, "Error: Can't read from file %s\n", argv[1]);
-	}
-	if (fd_to == -1)
-	{
-		error_exit(99, "Error: Can't write to file %s\n", argv[2]);
-	}
-	while ((bytes_read = read(fd_from, buffer, sizeof(buffer))) > 0)
-	{
-		ssize_t bytes_written = write(fd_to, buffer, bytes_read);
-
-		if (bytes_written == -1)
-		{
-			error_exit(99, "Error: Can't write to file %s\n", argv[2]);
-		}
-	}
-	if (bytes_read == -1)
-	{
-		error_exit(98, "Error: Can't read from file %s\n", argv[1]);
-	}
-	if (close(fd_from) == -1 || close(fd_to) == -1)
-	{
-		error_exit(100, "Error: Can't close fd\n");
-	}
 	return (0);
 }
