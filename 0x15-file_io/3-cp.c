@@ -34,7 +34,7 @@ void copy_file(const char *src_filename, const char *dest_filename)
 	int fd_from = open(src_filename, O_RDONLY);
 	int fd_to = open(dest_filename, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	char buffer[BUFFER_SIZE];
-	ssize_t bytes_read;
+	ssize_t bytes_read, bytes_written;
 
 	if (fd_from == -1)
 	{
@@ -44,11 +44,11 @@ void copy_file(const char *src_filename, const char *dest_filename)
 	{
 		error_exit(99, "Error: Can't write to file %s\n", dest_filename);
 	}
+
 	while ((bytes_read = read(fd_from, buffer, sizeof(buffer))) > 0)
 	{
-		ssize_t bytes_written = write(fd_to, buffer, bytes_read);
-
-		if (bytes_written == -1)
+		bytes_written = write(fd_to, buffer, bytes_read);
+		if (bytes_written == -1 || bytes_written != bytes_read)
 		{
 			error_exit(99, "Error: Can't write to file %s\n", dest_filename);
 		}
@@ -57,13 +57,9 @@ void copy_file(const char *src_filename, const char *dest_filename)
 	{
 		error_exit(98, "Error: Can't read from file %s\n", src_filename);
 	}
-	if (close(fd_from) == -1)
+	if (close(fd_from) == -1 || close(fd_to) == -1)
 	{
-		error_exit(100, "Error: Can't close fd %d\n", fd_from);
-	}
-	if (close(fd_to) == -1)
-	{
-		error_exit(100, "Error: Can't close fd %d\n", fd_to);
+		error_exit(100, "Error: Can't close file descriptors\n");
 	}
 }
 
@@ -71,7 +67,6 @@ void copy_file(const char *src_filename, const char *dest_filename)
  * main - Entry point for the cp program.
  * @argc: Numer of command-line args.
  * @argv: Array of strings containing the args.
- *
  * Return: 0 on success, other values on failure.
  */
 
